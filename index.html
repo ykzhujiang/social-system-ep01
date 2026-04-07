@@ -3,312 +3,102 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>好感度系统 EP01</title>
+<title>好感度系统 EP01 — 分镜剧本</title>
 <style>
-:root {
-  --bg: #0d1117;
-  --card-bg: #161b22;
-  --card-border: #30363d;
-  --text: #e6edf3;
-  --text-secondary: #8b949e;
-  --accent: #58a6ff;
-  --dialogue-bg: rgba(88,166,255,0.08);
-  --dialogue-color: #79c0ff;
-  --part-num-color: #f0883e;
-  --camera-bg: rgba(139,148,158,0.08);
-  --header-gradient: linear-gradient(135deg, #1a1f2e 0%, #0d1117 100%);
-}
-* { margin:0; padding:0; box-sizing:border-box; }
-body {
-  font-family: -apple-system, "PingFang SC", "Noto Sans SC", "Microsoft YaHei", sans-serif;
-  background: var(--bg);
-  color: var(--text);
-  line-height: 1.7;
-  -webkit-font-smoothing: antialiased;
-}
-.container {
-  max-width: 680px;
-  margin: 0 auto;
-  padding: 16px;
-}
-/* Header */
-.page-header {
-  background: var(--header-gradient);
-  border: 1px solid var(--card-border);
-  border-radius: 12px;
-  padding: 24px 20px;
-  margin-bottom: 16px;
-  text-align: center;
-}
-.page-header h1 {
-  font-size: 22px;
-  font-weight: 700;
-  margin-bottom: 8px;
-  background: linear-gradient(90deg, #58a6ff, #bc8cff);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-.meta-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  justify-content: center;
-}
-.meta-tag {
-  display: inline-block;
-  font-size: 12px;
-  padding: 2px 10px;
-  border-radius: 99px;
-  background: rgba(88,166,255,0.1);
-  color: var(--accent);
-  border: 1px solid rgba(88,166,255,0.2);
-}
-/* Collapsible sections */
-details {
-  border: 1px solid var(--card-border);
-  border-radius: 10px;
-  margin-bottom: 12px;
-  background: var(--card-bg);
-}
-details summary {
-  padding: 14px 16px;
-  cursor: pointer;
-  font-size: 15px;
-  font-weight: 600;
-  color: var(--text-secondary);
-  user-select: none;
-}
-details summary:hover { color: var(--text); }
-details[open] summary { border-bottom: 1px solid var(--card-border); }
-.section-body {
-  padding: 12px 16px;
-}
-/* Character items */
-.char-item {
-  padding: 8px 0;
-  border-bottom: 1px solid rgba(48,54,61,0.5);
-  font-size: 14px;
-}
-.char-item:last-child { border-bottom: none; }
-.char-dot {
-  display: inline-block;
-  width: 10px; height: 10px;
-  border-radius: 50%;
-  margin-right: 6px;
-  vertical-align: middle;
-}
-.char-desc {
-  display: block;
-  margin-top: 4px;
-  margin-left: 16px;
-  color: var(--text-secondary);
-  font-size: 13px;
-  line-height: 1.6;
-}
-/* Scene items */
-.scene-item {
-  padding: 8px 0;
-  border-bottom: 1px solid rgba(48,54,61,0.5);
-  font-size: 14px;
-}
-.scene-item:last-child { border-bottom: none; }
-.scene-desc {
-  display: block;
-  margin-top: 4px;
-  margin-left: 4px;
-  color: var(--text-secondary);
-  font-size: 13px;
-  line-height: 1.6;
-}
-/* Segment card */
-.segment-card {
-  background: var(--card-bg);
-  border: 1px solid var(--card-border);
-  border-radius: 10px;
-  margin-bottom: 12px;
-  overflow: hidden;
-  transition: border-color 0.2s;
-}
-.segment-card:hover {
-  border-color: rgba(88,166,255,0.4);
-}
-.segment-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 12px 16px 8px;
-}
-.segment-num {
-  font-size: 14px;
-  font-weight: 700;
-  color: var(--accent);
-}
-.segment-dur {
-  font-size: 12px;
-  padding: 2px 8px;
-  border-radius: 99px;
-  background: rgba(240,136,62,0.12);
-  color: var(--part-num-color);
-}
-.segment-meta {
-  padding: 0 16px 10px;
-  font-size: 13px;
-  color: var(--text-secondary);
-}
-/* Physical state inside segment */
-.segment-card .physical-state {
-  border: none;
-  border-radius: 0;
-  margin: 0;
-  border-top: 1px solid var(--card-border);
-  border-bottom: 1px solid var(--card-border);
-  background: rgba(139,148,158,0.03);
-}
-.segment-card .physical-state summary {
-  padding: 8px 16px;
-  font-size: 13px;
-  font-weight: 500;
-}
-.ps-item {
-  padding: 4px 16px;
-  font-size: 13px;
-  color: var(--text-secondary);
-  line-height: 1.6;
-}
-/* Parts */
-.parts-container {
-  padding: 10px 16px 6px;
-}
-.part-line {
-  padding: 8px 0;
-  font-size: 15px;
-  line-height: 1.8;
-  border-bottom: 1px solid rgba(48,54,61,0.3);
-}
-.part-line:last-child { border-bottom: none; }
-.part-num {
-  display: inline-block;
-  font-size: 11px;
-  font-weight: 700;
-  color: var(--part-num-color);
-  background: rgba(240,136,62,0.1);
-  padding: 1px 6px;
-  border-radius: 4px;
-  margin-right: 8px;
-  vertical-align: middle;
-}
-.char-tag {
-  font-weight: 600;
-}
-.dialogue {
-  color: var(--dialogue-color);
-  background: var(--dialogue-bg);
-  padding: 1px 4px;
-  border-radius: 3px;
-  font-style: italic;
-}
-/* Camera */
-.camera-line {
-  padding: 8px 16px 12px;
-  font-size: 13px;
-  color: var(--text-secondary);
-  background: var(--camera-bg);
-  border-top: 1px solid var(--card-border);
-}
-/* Stats */
-.stats-bar {
-  text-align: center;
-  padding: 12px;
-  font-size: 13px;
-  color: var(--text-secondary);
-  margin-bottom: 12px;
-}
-.stats-bar span {
-  margin: 0 8px;
-}
-/* Mobile tweaks */
-@media (max-width: 480px) {
-  .container { padding: 10px; }
-  .page-header { padding: 18px 14px; }
-  .page-header h1 { font-size: 19px; }
-  .part-line { font-size: 14px; }
-  .segment-header { padding: 10px 12px 6px; }
-  .parts-container { padding: 8px 12px 4px; }
-}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0a0a0f;color:#e0e0e0;font-family:"PingFang SC","Microsoft YaHei",sans-serif;font-size:18px;line-height:1.8;max-width:480px;margin:0 auto;padding:20px 16px}
+h1{font-size:24px;text-align:center;color:#fff;margin:20px 0 10px;letter-spacing:2px}
+.subtitle{text-align:center;color:#888;font-size:14px;margin-bottom:30px}
+.meta{background:#151520;border-radius:12px;padding:16px;margin-bottom:24px;border:1px solid #222}
+.meta-label{color:#666;font-size:13px}
+.meta-val{color:#ccc;font-size:15px}
+.section-title{font-size:20px;color:#4fc3f7;margin:32px 0 16px;padding-left:12px;border-left:3px solid #4fc3f7}
+.asset-card{background:#12121a;border-radius:12px;overflow:hidden;margin-bottom:20px;border:1px solid #1a1a2e}
+.asset-card img{width:100%;display:block}
+.asset-card .label{padding:12px 16px;font-size:15px;color:#aaa}
+.asset-card .label strong{color:#fff}
+.segment{background:#0f0f1a;border-radius:16px;padding:20px;margin:24px 0;border:1px solid #1a1a30}
+.segment-header{font-size:18px;color:#ff9800;font-weight:bold;margin-bottom:12px}
+.segment-info{font-size:14px;color:#777;margin-bottom:8px}
+.physical-state{background:#111;border-radius:8px;padding:12px;margin:12px 0;font-size:14px;color:#999;border-left:3px solid #555}
+.part{margin:16px 0;padding:16px;background:#13132a;border-radius:10px;border:1px solid #1e1e3a}
+.part-num{color:#4fc3f7;font-weight:bold;font-size:14px;margin-bottom:6px}
+.dialogue{color:#ffd54f;font-style:italic}
+.inner-thought{color:#ce93d8;font-style:italic}
+.camera{margin-top:12px;font-size:13px;color:#666;border-top:1px solid #222;padding-top:8px}
+footer{text-align:center;color:#444;font-size:12px;margin-top:40px;padding:20px 0}
 </style>
 </head>
 <body>
-<div class="container">
 
-<div class="page-header">
-  <h1>好感度系统 EP01</h1>
-  <div class="meta-tags">
-    <span class="meta-tag">🎬 realistic</span>
-    <span class="meta-tag">🌍 中国·当代·都市·科技公司办公室</span>
-    <span class="meta-tag">🎨 realistic cinematic, modern tech office ...</span>
-    <span class="meta-tag">📊 1 segments</span>
-  </div>
+<h1>🎬 好感度系统</h1>
+<p class="subtitle">EP01 · V6.1 分镜剧本 · 15秒单Segment</p>
+
+<div class="meta">
+<p><span class="meta-label">风格</span> <span class="meta-val">写实电影感</span></p>
+<p><span class="meta-label">场景</span> <span class="meta-val">中国·当代·都市·科技公司办公室</span></p>
+<p><span class="meta-label">时长</span> <span class="meta-val">15秒</span></p>
 </div>
 
-<div class="stats-bar">
-  <span>👤 2 角色</span>
-  <span>🏞️ 1 场景</span>
-  <span>🎬 1 分镜</span>
+<div class="section-title">角色 & 场景素材</div>
+
+<div class="asset-card">
+<img src="assets/林远.jpg" alt="林远" loading="lazy">
+<div class="label"><strong>林远</strong> — 28岁程序员，深蓝卫衣+牛仔裤，疲惫紧张</div>
 </div>
 
-<details>
-  <summary>👤 角色设定 (2)</summary>
-  <div class="section-body"><div class="char-item"><span class="char-dot" style="background:#e74c3c"></span><strong>[林远]</strong><span class="char-desc">28岁男，身高175cm中等偏瘦体型，小麦色皮肤，短发微乱，黑眼圈略重，穿深蓝色卫衣和牛仔裤，不戴眼镜，表情疲惫但眼神有灵气。</span></div>
-<div class="char-item"><span class="char-dot" style="background:#3498db"></span><strong>[赵总]</strong><span class="char-desc">45岁男，身高170cm微胖体型，方脸，发际线偏高后移，穿紧绷白色衬衫和黑色西裤搭深蓝领带，气场强势。</span></div>
-</div>
-</details>
-
-<details>
-  <summary>🏞️ 场景描述 (1)</summary>
-  <div class="section-body"><div class="scene-item"><strong>[科技公司办公室-白天]</strong><span class="scene-desc">现代开放式办公区，暖色日光灯加落地窗自然光，白色工位排列整齐，显示器亮着代码页面，桌上有外卖咖啡杯和散落文档，背景绿植和城市天际线。</span></div>
-</div>
-</details>
-
-
-<div class="segment-card">
-  <div class="segment-header">
-    <span class="segment-num">Segment 1</span>
-    <span class="segment-dur">15s</span>
-  </div>
-  <div class="segment-meta">📍 [科技公司办公室-白天] &nbsp;|&nbsp; 👥 <span class="char-tag" style="color:#e74c3c">[林远]</span>, <span class="char-tag" style="color:#3498db">[赵总]</span></div>
-  <details class="physical-state">
-<summary>📐 Physical State</summary>
-<div class="ps-item">**<span class="char-tag" style="color:#3498db">[赵总]</span>**: 画面左侧，站立于<span class="char-tag" style="color:#e74c3c">[林远]</span>工位前，右手拍着桌面，身体前倾，视线怒视右侧的<span class="char-tag" style="color:#e74c3c">[林远]</span>。</div><div class="ps-item">**<span class="char-tag" style="color:#e74c3c">[林远]</span>**: 画面右侧，低头站在自己工位旁，双手垂在身侧，视线看向桌面。</div>
-</details>
-  <div class="parts-container">
-    <div class="part-line"><span class="part-num">P1</span><span class="char-tag" style="color:#3498db">[赵总]</span>右手用力拍下办公桌面，桌上咖啡杯震动，身体前倾怒视面前低头站立的<span class="char-tag" style="color:#e74c3c">[林远]</span>，额头青筋微起，嘴角绷紧。背景两名同事偷偷从显示器后方探头观望。</div>
-<div class="part-line"><span class="part-num">P2</span><span class="char-tag" style="color:#3498db">[赵总]</span>说：<span class="dialogue">“这种方案你也敢交上来？！你脑子是不是进水了！”</span></div>
-<div class="part-line"><span class="part-num">P3</span><span class="char-tag" style="color:#e74c3c">[林远]</span>双肩微缩，嘴唇轻抿，右手无意识攥紧裤缝。突然他眨了一下眼，瞳孔微微放大，视线从桌面缓缓抬起，移向<span class="char-tag" style="color:#3498db">[赵总]</span>头顶的虚空位置，双眼微睁，眉头轻皱出困惑的表情。</div>
-<div class="part-line"><span class="part-num">P4</span><span class="char-tag" style="color:#e74c3c">[林远]</span>内心独白说：<span class="dialogue">“好感度负九十九……所以这玩意是想告诉我，我已经没救了？”</span></div>
-
-  </div>
-  <div class="camera-line">🎥 中景起，缓推至林远面部近景，平视角度，正常速度</div>
+<div class="asset-card">
+<img src="assets/赵总.jpg" alt="赵总" loading="lazy">
+<div class="label"><strong>赵总</strong> — 45岁老板，白衬衫+蓝领带，严肃强势</div>
 </div>
 
-
+<div class="asset-card">
+<img src="assets/科技公司办公室-白天.jpg" alt="科技公司办公室" loading="lazy">
+<div class="label"><strong>科技公司办公室</strong> — 明亮现代开放式办公区</div>
 </div>
 
-<script>
-// Auto-open first segment's physical state on load (optional interactivity)
-document.addEventListener('DOMContentLoaded', function() {
-  // Smooth scroll spy - highlight current segment
-  const cards = document.querySelectorAll('.segment-card');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.style.borderColor = 'rgba(88,166,255,0.5)';
-      } else {
-        e.target.style.borderColor = '';
-      }
-    });
-  }, { threshold: 0.3 });
-  cards.forEach(c => observer.observe(c));
-});
-</script>
+<div class="section-title">Segment 01 · 15秒</div>
+
+<div class="segment">
+<div class="segment-header">📍 科技公司办公室 · 白天</div>
+<div class="segment-info">出场：林远、赵总</div>
+
+<div class="physical-state">
+<strong>初始姿态：</strong><br>
+赵总：画面左侧，站于林远工位前，右手拍桌，身体前倾，视线怒视右侧林远<br>
+林远：画面右侧，低头站在工位旁，双手垂在身侧，视线看向桌面
+</div>
+
+<div class="part">
+<div class="part-num">Part 1</div>
+赵总右手用力拍下办公桌面，桌上咖啡杯震动，身体前倾怒视面前低头站立的林远，额头青筋微起，嘴角绷紧。背景两名同事偷偷从显示器后方探头观望。<br>
+<span class="dialogue">[同事A]："又被骂了……今天第三回了。"</span><br>
+<span class="dialogue">[同事B]："别看了别看了，小心火烧到咱们。"</span>
+</div>
+
+<div class="part">
+<div class="part-num">Part 2</div>
+<span class="dialogue">[赵总]："这种方案你也敢交上来？！你脑子是不是进水了！"</span>
+</div>
+
+<div class="part">
+<div class="part-num">Part 3</div>
+林远双肩微缩，嘴唇轻抿，右手无意识攥紧裤缝。突然他眨了一下眼，瞳孔微微放大，视线从桌面缓缓抬起，移向赵总头顶的虚空位置，双眼微睁，眉头轻皱出困惑的表情。<br>
+<span class="inner-thought">[林远(内心)]："等等……赵总头上那行字是什么？"</span>
+</div>
+
+<div class="part">
+<div class="part-num">Part 4</div>
+<span class="inner-thought">[林远(内心)]："好感度负九十九……所以这玩意是想告诉我，我已经没救了？"</span>
+</div>
+
+<div class="camera">🎥 运镜：中景起，缓推至林远面部近景，平视角度，正常速度</div>
+</div>
+
+<footer>
+EXP-1039 · 好感度系统 EP01 · Trinity V3 Operator<br>
+Generated 2026-04-08
+</footer>
+
 </body>
 </html>
