@@ -1,0 +1,33 @@
+{
+  "project": "好感度系统",
+  "created_at": "2026-04-07T18:57:09.551566+00:00",
+  "github_repo": "ykzhujiang/好感度系统",
+  "config": {
+    "theme": "普通程序员林远被老板当众训斥后，突然眼前浮现半透明系统面板——社交好感度系统激活。第一眼看到老板头上显示【好感度: -99 | 状态: 暴怒】，主角内心吐槽：所以这是告诉我已经没救了？都市喜剧，苦中作乐风格。",
+    "genre": "comedy",
+    "style": "realistic",
+    "duration": 15,
+    "characters": 2,
+    "setting": "中国·当代·都市·科技公司办公室",
+    "ratio": "9:16",
+    "episode": "ep01"
+  },
+  "status": "not_started",
+  "steps": {
+    "step1b": {
+      "status": "not_started"
+    },
+    "step1.5": {
+      "status": "not_started"
+    },
+    "step3": {
+      "status": "not_started"
+    },
+    "step4": {
+      "status": "not_started"
+    },
+    "step6": {
+      "status": "not_started"
+    }
+  }
+}
